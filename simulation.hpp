@@ -18,11 +18,11 @@
 class Simulation {
     
     public:
-        void run(std::vector<Particle> part_list, const bool flags[8]);
+        void run(std::vector<Particle> part_list, bool show_fps, float part_size, float trail);
 
 };
 
-void Simulation::run(std::vector<Particle> part_list, const bool flags[8]) {
+void Simulation::run(std::vector<Particle> part_list, bool show_fps, float part_size, float trail) {
     
     sf::Clock clock;
     sf::Time time;
@@ -36,8 +36,9 @@ void Simulation::run(std::vector<Particle> part_list, const bool flags[8]) {
     sf::CircleShape body(20);
     
     sf::RectangleShape clearScreen(sf::Vector2f(size.x * 2, size.y * 2));
-    clearScreen.setOrigin(sf::Vector2f(size.x, size.y)); 
-    clearScreen.setFillColor(sf::Color(0, 0, 0, 255)); 
+    clearScreen.setOrigin(sf::Vector2f(size.x, size.y));
+    trail = 255 - trail/100 * 255; 
+    clearScreen.setFillColor(sf::Color(0, 0, 0, trail)); 
 
     window.setView(view);
     window.setFramerateLimit(60);
@@ -45,12 +46,12 @@ void Simulation::run(std::vector<Particle> part_list, const bool flags[8]) {
     
     window.clear(sf::Color::Black);
 
-    body.setRadius(1.5f);
+    body.setRadius(part_size);
     body.setFillColor({255,255,255});
 
     while (window.isOpen()) {
 
-        if (flags[FPS_FLAG]) {
+        if (show_fps) {
             time = clock.getElapsedTime();
             std::cout<<"FPS: "<< 1.0f/time.asSeconds() << "\n";
             clock.restart();

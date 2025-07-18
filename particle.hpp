@@ -78,7 +78,7 @@ inline void Particle::reset_force() {
 }
 
 inline float distance_between_bodies(Particle a, Particle b) {
-    return std::max(sqrtf(pow(a.pos_x - b.pos_x, 2) + pow(a.pos_y - b.pos_y, 2)), float(150));
+    return std::max(sqrtf(pow(a.pos_x - b.pos_x, 2) + pow(a.pos_y - b.pos_y, 2)), float(140));
 }
 
 inline float attraction_between_bodies(Particle a, Particle b) {
