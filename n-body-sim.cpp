@@ -1,18 +1,14 @@
-#include <cstddef>
-#include <math.h>
-#include <iostream>
-#include <stdlib.h>
-#include <SFML/Graphics.hpp>
 #include "particle.hpp"
 #include "simulation.hpp"
-#include "parser.hpp"
+#include "fileparser.hpp"
 
 int main(int argc, char *argv[]) {
     
-    Parser parser;
+    bool flags[8] = {1,1,0,0,0,0,0,0};
+    FileParser file_parser;
     Simulation sim;
     
-    sim.run(parser.Parse("testo.txt"));
+    sim.run(file_parser.Parse(argv[1]), flags);
 
 }
 

@@ -1,11 +1,11 @@
-#ifndef PARSER_HPP
-#define PARSER_HPP
+#ifndef FILEPARSER_HPP
+#define FILEPARSER_HPP
 
 #include <fstream>
 #include <vector>
 #include "particle.hpp"
 
-class Parser {
+class FileParser {
     public:
         std::ifstream part_file;
 
@@ -13,7 +13,7 @@ class Parser {
         
 };
 
-std::vector<Particle> Parser::Parse(std::string filename) {
+std::vector<Particle> FileParser::Parse(std::string filename) {
 
     std::vector<Particle> lista_particelle;
 
