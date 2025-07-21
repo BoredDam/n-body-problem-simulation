@@ -2,6 +2,8 @@
 
 This project consists in an implementation of the **naive algorithm for a "n-body problem" simulation**, written in C++.
 
+Click on the images to open some videos on YouTube:
+
 [![2000-bodysim](https://img.youtube.com/vi/z-a510rj_m4/0.jpg)](https://www.youtube.com/watch?v=z-a510rj_m4)
 
 *2000-body demo*.
