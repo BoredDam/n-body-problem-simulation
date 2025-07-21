@@ -1,11 +1,20 @@
-# N-Body simulation projects
+# N-Body simulation project, naive approach.
 
 This project consists in an implementation of the **naive algorithm for a "n-body problem" simulation**, written in C++.
 
-[![Watch the video](https://raw.githubusercontent.com/username/repository/branch/path/to/thumbnail.jpg)](https://raw.githubusercontent.com/username/repository/branch/path/to/video.mp4)
+[![2000-bodysim](https://img.youtube.com/vi/z-a510rj_m4/0.jpg)](https://www.youtube.com/watch?v=z-a510rj_m4)
 
-a
-## About the project
+*2000-body demo*.
+
+
+[![1500-bodysim](https://img.youtube.com/vi/ZODAdztqdFE/0.jpg)](https://www.youtube.com/watch?v=ZODAdztqdFE)
+
+*my fav demo, 1500-body*.
+
+[![fav-bodysim](https://img.youtube.com/vi/atKVO5fEWuM/0.jpg)](https://www.youtube.com/watch?v=atKVO5fEWuM)
+
+*my first demo :)*.
+## 👨‍💻 About the project
 
 ### Algorithm - Naive Approach
 The chosen algorithm for this code for the n-nody problem, is the naive-algorithm.
@@ -37,8 +46,24 @@ This is an example of a correctly formatted text file for a 3-body problem.
 
 ## To compile
 
-Use the -O2 optimization flag for better performances.
+Use the -O2 optimization flag for better performances. 
+
+## ▶️ To run a simulation
 
 ```
-g++ n-body-sim.cpp particle.hpp simulation.hpp fileparser.hpp -I"C:/C++Lib/SFML-3.0.0-windows-gcc-14.2.0-mingw-64-bit/SFML-3.0.0/include" -L"C:/C++Lib/SFML-3.0.0-windows-gcc-14.2.0-mingw-64-bit/SFML-3.0.0/lib" -lsfml-graphics -lsfml-window -lsfml-system -O2 -o n-body-sim-3.exe
+...> .\n-body-sim.exe <directory and text file name> <-fps|-nfps> <particle-size> <trail opacity [0,100]> 
 ```
+
+Example:
+```
+\n-body-proj\src> .\n-body-sim.exe ..\text-files\my-favourite.txt -fps 1.5 20
+```
+
+## 🔧 Planned changes and fixes. 
+
+- **Refactoring. A lot of refactoring.**
+- **A better command line input parser**.
+- Other demos.
+- **Colors**(?).
+- Better handling of the physics.
+- **I (probably) won't further optimize this code** in computational terms, since I'll create other repositories (or folders in this one?) with other simulation approaches, such as the Barnes-Hut algorithm or a parallel strategy.
