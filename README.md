@@ -21,7 +21,7 @@ Click on the images to open some videos on YouTube:
 ### Algorithm - Naive Approach
 The chosen algorithm for this code for the n-nody problem, is the naive-algorithm.
 
-It has a $O(n^2)$ time complexity (with $n = $ number of particles), since the forces that are applied to every particle are calculated based on the **attraction force between *every pair* of particles** of the simulation.
+It has a $O(n^2)$ time complexity (with $n =$ number of particles), since the forces that are applied to every particle are calculated based on the **attraction force between *every pair* of particles** of the simulation.
 
 ### Why C++?
 Mainly three reasons:
