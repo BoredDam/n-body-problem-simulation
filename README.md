@@ -26,7 +26,7 @@ It has a $O(n^2)$ time complexity (with $n =$ number of particles), since the fo
 ### Why C++?
 Mainly three reasons:
 
-- *Absolute OOP*. I decided to use C++ both for the performances of the language and the slight **layer of abstraction offered by OOP**. As an example, both the simulation and the particles are in fact instances of the `Simulation` and `Particle` class.
+- *Absolute OOP*. I decided to use C++ both for the performances of the language and the slight **layer of abstraction offered by OOP**. As an example, both the simulation and the particles are in fact instances of the `Simulation` and `Particle` classes.
 
 - The **Standard Template Library** offers some great data structures implementation. I decided to use the **vector** template class to gather the `Particle` objects, since it's the best option in terms of speed and ease of access (contiguous memory is the way to go, no iterator is also needed. Lists dont need contiguos memory, but they are also pretty slow for this type of situations.).
 
