@@ -32,7 +32,23 @@ Mainly three reasons:
 
 - For the **visualization of the particles**, I decided to use the graphical library **SFML** (I just picked it up! Every tip about this library is accepted).
 
-### Loading the simulation
+### Handling collisions
+
+Collisions are a problem when simulating attraction between bodies. Given the formula:
+
+$$
+Force = G \cdot \frac{m_1 \cdot m_2}{r^2}
+$$
+
+When $r$ (the distance between the two masses) tends to 0, $F$ tends to infinity.
+
+$$
+\lim_{r \to 0} \;\; G \cdot \frac{m_1 \cdot m_2}{r^2} = +\infty
+$$
+
+This situation is handled by **setting the minimum distance between two particles to a fixed value**, when the actual distance is lower than that. Particles won't go like crazy after they get very close, but real collisions are not really handled, **particles pass through each other**.
+
+## Loading the simulation
 
 The code creates particles by parsing out a text file.
 ```
