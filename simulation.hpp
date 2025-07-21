@@ -16,7 +16,6 @@
 
 
 class Simulation {
-    
     public:
         void run(std::vector<Particle> part_list, bool show_fps, float part_size, float trail);
 

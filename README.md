@@ -1,12 +1,39 @@
 # N-Body simulation projects
 
-This projects consists in an implementation of the **naive algorithm for the n-body problem simulation**.
+This project consists in an implementation of the **naive algorithm for a "n-body problem" simulation**, written in C++.
 
-![alt text](image.png)
+[![Watch the video](https://raw.githubusercontent.com/username/repository/branch/path/to/thumbnail.jpg)](https://raw.githubusercontent.com/username/repository/branch/path/to/video.mp4)
 
-For the **visualization of the particles**, I used the graphical library **SFML**.
 
-I decided to use OOP offered by C++ to **encapsulate** the datas related to every particle of the simulation, inside instances of the `Particle` class.
+## About the project
+
+### Algorithm - Naive Approach
+The chosen algorithm for this code for the n-nody problem, is the naive-algorithm.
+
+It has a $O(n^2)$ time complexity (with $n = $ number of particles), since the forces that are applied to every particle are calculated based on the **attraction force between *every pair* of particles** of the simulation.
+
+### Why C++?
+Mainly three reasons:
+
+- *Absolute OOP*. I decided to use C++ both for the performances of the language and the slight **layer of abstraction offered by OOP**. As an example, both the simulation and the particles are in fact instances of the `Simulation` and `Particle` class.
+
+- The **Standard Template Library** offers some great data structures implementation. I decided to use the **vector** template class to gather the `Particle` objects, since it's the best option in terms of speed and ease of access (contiguous memory is the way to go, no iterator is also needed. Lists dont need contiguos memory, but they are also pretty slow for this type of situations.).
+
+- For the **visualization of the particles**, I decided to use the graphical library **SFML** (I just picked it up! Every tip about this library is accepted).
+
+### Loading the simulation
+
+The code creates particles by parsing out a text file.
+```
+<x-position> <y-position> <mass> <x-speed> <y-speed>
+```
+This is an example of a correctly formatted text file for a 3-body problem.
+
+```
+0 0 10000.1 0 0
+0 -200 200.7 -4 0
+300.5 0 100 0 -3 
+```
 
 ## To compile
 
