@@ -9,11 +9,6 @@
 #define DELTA_TIME 0.2
 #define CONST_G 1
 
-/**
- * Particles are the objects that are displayed in the 
- * simulation. 
- */
-
 class Particle {
 
     public:
@@ -31,11 +26,10 @@ class Particle {
         inline void update_velocity();              // THEN run this to update velocity; vel = force/mass * DELTA_TIME.
         inline void update_position();              // THEN run this to update position; pos = vel * DELTA_TIME.
         inline void reset_force();                  // after every calculation, reset the cumulative sum of the forces on every particle
-        void print_position();
+        void _print_position();
 };
 
 Particle::Particle(float x_in, float y_in, float mass_in, float vel_x_in, float vel_y_in) {
-
     pos_x = x_in;
     pos_y = y_in;
     mass = mass_in;
@@ -45,7 +39,7 @@ Particle::Particle(float x_in, float y_in, float mass_in, float vel_x_in, float 
     force_y = 0;
 }
 
-void Particle::print_position() {
+void Particle::_print_position() {
     std::cout << "x : [" << pos_x << "] y : [" << pos_y << "]\n";
 }
 
@@ -58,13 +52,13 @@ inline void Particle::update_force(Particle other) {
     float f = attraction_between_bodies(*this, other);
     float dist = distance_between_bodies(*this, other);
 
-    force_x = force_x + f * (other.pos_x - this->pos_x) / dist;
-    force_y = force_y + f * (other.pos_y - this->pos_y) / dist;
+    force_x = force_x + f * (other.pos_x - this->pos_x) / dist; // this is a cumulative sum used to account for every force
+    force_y = force_y + f * (other.pos_y - this->pos_y) / dist; // involved in the simulation. run reset_force() at the end of every frame
 }
 
 inline void Particle::update_velocity() {
-    vel_x = vel_x + force_x/mass * DELTA_TIME;
-    vel_y = vel_y + force_y/mass * DELTA_TIME;
+    vel_x = vel_x + force_x/mass * DELTA_TIME; // force/mass = accel; accel * time = velocity 
+    vel_y = vel_y + force_y/mass * DELTA_TIME; 
 }
 
 inline void Particle::update_position() {

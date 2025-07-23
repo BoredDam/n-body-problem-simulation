@@ -6,39 +6,12 @@
 #include "particle.hpp"
 
 class FileParser {
+    private:
+        std::ifstream open_file(std::string filename);
+        std::vector<Particle> create_part_vec(std::ifstream &file_stream);
     public:
-        std::ifstream part_file;
-
         std::vector<Particle> Parse(std::string filename);
-        
-};
-
-std::vector<Particle> FileParser::Parse(std::string filename) {
-
-    std::vector<Particle> lista_particelle;
-
-    part_file.open(filename);
-
-    if (!part_file.is_open()) {
-        fprintf(stderr, "File non aperto.\n");
-        exit(EXIT_FAILURE);
-    } 
-
-    std::cout << "File aperto con successo.\n";
-
-    float x;
-    float y;
-    float mass;
-    float vel_x;
-    float vel_y;
     
-    while (part_file >> x >> y >> mass >> vel_x >> vel_y) {
-        lista_particelle.emplace_back(x, y, mass, vel_x, vel_y);
-    }
-
-    part_file.close();
-    return lista_particelle;
-
-}
+};
 
 #endif

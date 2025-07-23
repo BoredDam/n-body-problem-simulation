@@ -57,6 +57,8 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "fstream": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "bitset": "cpp",
+        "regex": "cpp"
     }
 }
