@@ -62,19 +62,39 @@ This is an example of a correctly formatted text file for a 3-body problem.
 300.5 0 100 0 -3 
 ```
 
-## To compile
+## 👷 To compile the project
 
-Use the -O2 optimization flag for better performances. 
+### Installing SFML library 
+
+#### (Fedora)
+
+```
+sudo dnf install SFML SFML-devel
+```
+
+#### (Debian)
+```
+sudo apt-get install libsfml-dev
+```
+
+### Compiling the source code
+```
+g++ src/*.cpp [-O0|-O1|-O2|-O3|] -o n-body-sim -lsfml-graphics -lsfml-window -lsfml-system
+```
+
+Use the -O1, -O2 or -O3 optimization flag for better performances. 
+
+
 
 ## ▶️ To run a simulation
 
 ```
-...> .\n-body-sim.exe <directory and text file name> <-fps|-nfps> <particle-size> <trail opacity [0,100]> 
+...> ./n-body-sim <directory of text file> <-fps|-nfps> <particle-size> <trail opacity [0,100]> 
 ```
 
 Example:
 ```
-\n-body-proj\src> .\n-body-sim.exe ..\text-files\my-favourite.txt -fps 1.5 20
+./n-body-sim ./text-files/3-galaxies.txt -fps 1 0
 ```
 
 ## 🔧 Planned changes and fixes. 

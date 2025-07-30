@@ -1,27 +1,53 @@
 #ifndef SIMULATION_HPP
 #define SIMULATION_HPP
 
-#include <math.h>
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include <string.h>
 #include <vector>
+#include <math.h>
+
+#include <SFML/Graphics.hpp>
 #include "particle.hpp"
 
-#define TRAIL_FLAG 0
-#define FPS_FLAG 1
-#define LINES_FLAG 2
 
-
-
-
-class Simulation {
-    public:
-        void run(std::vector<Particle> part_list, bool show_fps, float part_size, float trail);
-
+struct simulation_params {
+    bool show_fps;
+    float part_size; 
+    float trail_opacity;
 };
 
-void Simulation::run(std::vector<Particle> part_list, bool show_fps, float part_size, float trail) {
+class Simulation {
+
+    public:
+        struct simulation_params parse_command_line(int argc, char *argv[]);
+        void run(std::vector<Particle> part_list, struct simulation_params params);
+};
+
+struct simulation_params Simulation::parse_command_line(int argc, char *argv[]) {
+
+    struct simulation_params output_params = {.show_fps = false};
+
+
+    for (int i = 0; i<argc; i++) {
+        if (!strcmp(argv[i], "-fps")) {
+            output_params.show_fps = true;
+        }
+
+        if (!strcmp(argv[i], "-h")) {
+            std::cout << argv[0] << " <directory of particle text file> <particle-size, best:1|1.5> <trail opacity min:0 max:100> [-fps]\n";
+            exit(EXIT_SUCCESS);
+        }
+    }
+
+    output_params.part_size = atof(argv[2]);
+    output_params.trail_opacity = atof(argv[3]);
+
+    return output_params;
+}
+
+
+void Simulation::run(std::vector<Particle> part_list, struct simulation_params params) {
     
     sf::Clock clock;
     sf::Time time;
@@ -30,13 +56,12 @@ void Simulation::run(std::vector<Particle> part_list, bool show_fps, float part_
     sf::Vector2u size = window.getSize();
     sf::View view(sf::Vector2f(0, 0), sf::Vector2f(size.x, size.y));
     view.setSize(view.getSize() * float(1));
-    
 
     sf::CircleShape body(20);
     
     sf::RectangleShape clearScreen(sf::Vector2f(size.x * 2, size.y * 2));
     clearScreen.setOrigin(sf::Vector2f(size.x, size.y));
-    trail = 255 - trail/100 * 255; 
+    float trail = 255 - params.trail_opacity/100 * 255; 
     clearScreen.setFillColor(sf::Color(0, 0, 0, trail)); 
 
     window.setView(view);
@@ -45,20 +70,20 @@ void Simulation::run(std::vector<Particle> part_list, bool show_fps, float part_
     
     window.clear(sf::Color::Black);
 
-    body.setRadius(part_size);
+    body.setRadius(params.part_size);
     body.setFillColor({255,255,255});
 
     while (window.isOpen()) {
 
-        if (show_fps) {
+        if (params.show_fps) {
             time = clock.getElapsedTime();
             std::cout<<"FPS: "<< 1.0f/time.asSeconds() << "\n";
             clock.restart();
         }
-        
-        while (std::optional event = window.pollEvent()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
 
-            if (event->is<sf::Event::Closed>()) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
@@ -73,7 +98,6 @@ void Simulation::run(std::vector<Particle> part_list, bool show_fps, float part_
         }
         
         window.draw(clearScreen);
-        //window.clear();
 
         for (auto& part : part_list) {
             part.update_velocity();
