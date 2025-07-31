@@ -89,12 +89,12 @@ Use the -O1, -O2 or -O3 optimization flag for better performances.
 ## ▶️ To run a simulation
 
 ```
-...> ./n-body-sim <directory of text file> <-fps|-nfps> <particle-size> <trail opacity [0,100]> 
+...> ./n-body-sim <directory of text file> <particle-size best:1/1.5> <trail opacity min:0, max:100> [-fps]
 ```
 
 Example:
 ```
-./n-body-sim ./text-files/3-galaxies.txt -fps 1 0
+./n-body-sim ./text-files/3-galaxies.txt 1 0 -fps
 ```
 
 ## 🔧 Planned changes and fixes. 
