@@ -72,7 +72,7 @@ This is an example of a correctly formatted text file for a 3-body problem.
 sudo dnf install SFML SFML-devel
 ```
 
-#### (Debian)
+#### (Debian, Ubuntu, Mint)
 ```
 sudo apt-get install libsfml-dev
 ```
